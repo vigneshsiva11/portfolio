@@ -1,0 +1,101 @@
+#works {
+    margin: 0 auto;
+    min-height: calc(100vh - 4rem);
+    width: 100%;
+    max-width: 60rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+}
+
+.worksTitle {
+    margin: 1rem 0;
+    font-size: 3rem;
+}
+
+.workDesc {
+    font-weight: 300;
+    font-size: 1rem;
+    max-width: 45rem;
+}
+
+.worksImgs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 60rem;
+    margin: 2rem auto;
+    gap: 1rem;
+}
+
+.worksImg {
+    object-fit: cover;
+    height: 20rem;
+    width: auto;
+    max-width: 100%;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.worksImg:hover {
+    transform: scale(1.05);
+}
+
+
+.workBtn {
+    margin: 3rem 0;
+    padding: 0.5rem 2.5rem;
+    border: none;
+    border-radius: 2rem;
+    background: white;
+    color: black;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.workBtn:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    color: #333;
+}
+
+.workBtn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.certButton {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #ffce00;
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.certButton:hover {
+  background-color: #f5b000;
+}
+
+
+@media screen and(max-width:585px) {
+    .worksImg {
+        height:48vw;
+    
+    }
+    
+}

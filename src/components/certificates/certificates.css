@@ -1,0 +1,132 @@
+.certifications-page {
+    min-height: 100vh;
+    width: 100%;
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 6rem 2rem 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(30, 30, 30);
+    color: white;
+    box-sizing: border-box;
+}
+
+.certTitle {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: white;
+}
+
+.certContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 70rem;
+    margin-top: 2rem;
+}
+
+.certCard {
+    background: rgb(40, 40, 40);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.certCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.certImg {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    border: 2px solid rgb(60, 60, 60);
+}
+
+.certCard h3 {
+    font-size: 1.4rem;
+    color: #FFD700;
+    margin: 1rem 0 0.5rem 0;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.certCard p {
+    color: #ccc;
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.certCard p strong {
+    color: white;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .certifications-page {
+        padding: 5rem 1rem 3rem 1rem;
+    }
+    
+    .certTitle {
+        font-size: 2.5rem;
+    }
+    
+    .certContainer {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    .certCard {
+        padding: 1.2rem;
+    }
+    
+    .certCard h3 {
+        font-size: 1.2rem;
+    }
+    
+    .certCard p {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .certifications-page {
+        padding: 4rem 0.5rem 2rem 0.5rem;
+    }
+    
+    .certTitle {
+        font-size: 2rem;
+    }
+    
+    .certCard {
+        padding: 1rem;
+    }
+    
+    .certCard h3 {
+        font-size: 1.1rem;
+    }
+    
+    .certCard p {
+        font-size: 0.85rem;
+    }
+    
+    .certImg {
+        max-width: 250px;
+    }
+}
