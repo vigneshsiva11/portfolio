@@ -1,4 +1,4 @@
-import React from 'react'
+
 import './skills.css'
 import UIDesign from '../../assets/ui-design.png'
 import WebDevelopment from '../../assets/website-design.png'
@@ -42,21 +42,3 @@ const Skills =() => {
 }
 
 export default Skills
-
-
-
-{/* <div>
-      <section id='skills'>
-        <h2>Skills</h2>
-        <div className="skillsContainer">
-          <div className="skill">
-            <img src={UIDesign} alt="UI Design" />
-            <h3>UI Design</h3>
-          </div>
-          <div className="skill">
-            <img src={WebDevelopment} alt="Web Development" />
-            <h3>Web Development</h3>
-          </div>
-        </div>
-      </section>
-    </div> */}
