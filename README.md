@@ -73,7 +73,6 @@ Open index.html in your browser or use Live Server in VS Code
 
 ## 📁 Project Structure
 
-```
 portfolio-website/
 ├── index.html             # Main HTML file
 ├── css/
