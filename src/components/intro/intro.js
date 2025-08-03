@@ -1,7 +1,7 @@
 
 import './intro.css'
 import hireme from '../../assets/hireme.png'
-
+import me1edit from '../../assets/me1edit.jpg'
 const Intro = () => {
   return (
       <section id="intro">
@@ -12,8 +12,8 @@ const Intro = () => {
               <a href="/vignesh_resume.pdf" target="_blank" rel="noopener noreferrer">
               <button className="btn"><img src={hireme} alt="" className='btnImg'/>Resume</button>
               </a>
-
         </div>
+        <img src = {me1edit} alt="profile" className='bg' />
       </section>
   )
 }

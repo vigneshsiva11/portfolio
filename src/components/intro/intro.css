@@ -18,6 +18,7 @@
 }
 
 .introContent {
+    /* background-color: rgb(255, 0, 0); */
     height: 100vh;
     width: 100vw;
     padding: 2rem;
@@ -79,20 +80,66 @@
 
 @media screen and (max-width: 840px) {
     .bg {
-        right: -10vw;
+        right: -15vw;
     }
 
     .introContent {
-        font-size: 10vw;
+        font-size: 5vw;
+        padding: 1.5rem;
     }
 
     .hello {
-        font-size: 4.5vw;
+        font-size: 3.5vw;
+    }
+    
+    .intropara {
+        font-size: 2.8vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .bg {
+        right: -18vw;
+    }
+
+    .introContent {
+        font-size: 6.5vw;
+        padding: 1.2rem;
+    }
+
+    .hello {
+        font-size: 4vw;
+    }
+    
+    .intropara {
+        font-size: 3.2vw;
     }
 }
 
 @media screen and (max-width: 480px) {
     .bg {
         right: -20vw;
+        top: -2rem;
+        height: 90vh;
+    }
+    
+    .introContent {
+        font-size: 8vw;
+        padding: 1rem;
+    }
+    
+    .hello {
+        font-size: 5vw;
+    }
+    
+    .intropara {
+        font-size: 4vw;
+        line-height: 1.4;
+    }
+    
+    .btn {
+        padding: 0.6rem 2rem;
+        font-size: 0.9rem;
+        margin: 1.5rem 0;
     }
 }
