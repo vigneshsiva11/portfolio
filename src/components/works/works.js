@@ -100,7 +100,7 @@ const Works = () => {
 
   return (
     <section id="works">
-      <h2 className="worksTitle">My Works</h2>
+      <h2 className="worksTitle">What I did</h2>
       <span className="workDesc">
         I take pride in paying attention to the smallest details and making sure that my work is pixel perfect.
         I am excited to bring my skills and experience to help businesses <br />
