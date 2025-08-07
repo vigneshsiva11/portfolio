@@ -1,4 +1,3 @@
-import React from 'react';
 import './techstack.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
@@ -16,7 +15,6 @@ import {
   faDatabase, 
   faCode, 
   faServer,
-  faCogs,
   faWind
 } from '@fortawesome/free-solid-svg-icons';
 
