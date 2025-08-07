@@ -1,0 +1,240 @@
+#techstack {
+    margin: 0 auto;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    box-sizing: border-box;
+}
+
+.techStackTitle {
+    margin: 1rem 0;
+    font-size: 3rem;
+    font-weight: 600;
+    color: white;
+}
+
+.techStackDesc {
+    font-weight: 300;
+    font-size: 1.2rem;
+    max-width: 45rem;
+    margin-bottom: 3rem;
+    color: #ccc;
+}
+
+.techStackContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: 100%;
+    max-width: 60rem;
+}
+
+.techCategory {
+    background: rgba(50, 50, 50, 0.8);
+    border-radius: 1rem;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.categoryTitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: yellow;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.techGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.techItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.techItem:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+}
+
+.techIcon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    transition: background 0.3s ease;
+}
+
+.techIcon:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.techInfo {
+    flex: 1;
+    text-align: left;
+}
+
+.techInfo h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+}
+
+.progressBar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.3rem;
+}
+
+.progressFill {
+    height: 100%;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    border-radius: 4px;
+    transition: width 2s ease-in-out;
+    animation: fillProgress 2s ease-in-out;
+}
+
+@keyframes fillProgress {
+    from { width: 0%; }
+}
+
+.percentage {
+    font-size: 0.9rem;
+    color: #ccc;
+    font-weight: 500;
+}
+
+/* Tools Grid */
+.toolsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.toolItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.toolItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.15);
+}
+
+.toolIcon {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.toolIcon:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.toolName {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    #techstack {
+        padding: 3rem 1rem;
+    }
+
+    .techStackTitle {
+        font-size: 2.5rem;
+    }
+
+    .techStackDesc {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .techCategory {
+        padding: 1.5rem;
+    }
+
+    .categoryTitle {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .techGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .toolsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .techIcon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .toolIcon {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .techStackTitle {
+        font-size: 2rem;
+    }
+
+    .techStackDesc {
+        font-size: 0.9rem;
+    }
+
+    .techCategory {
+        padding: 1rem;
+    }
+
+    .toolsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .techItem {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .techInfo {
+        text-align: center;
+    }
+}

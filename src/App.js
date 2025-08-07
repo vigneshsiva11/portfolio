@@ -7,6 +7,7 @@ import Skills from "./components/skills/skills";
 import Works from "./components/works/works";
 import Contact from "./components/contact/contact";
 import Certifications from "./components/certificates/certificates"; 
+import TechStack from "./components/tech stack/techstack";
 
 
 function Home() {
@@ -15,6 +16,7 @@ function Home() {
       <Navbar />
       <Intro />
       <Skills />
+      <TechStack /> 
       <Works />
       <Contact />
     </>
