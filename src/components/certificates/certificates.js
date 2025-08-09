@@ -1,73 +1,91 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
 import './certificates.css';
 
 import googleAdsApps from '../../assets/googleadsapps.jpg';
 import googleAdsDisplay from '../../assets/googleadddisplay.jpg';
 import javascriptEssentials1 from '../../assets/javascript-essentials-1.jpg';
 import javascriptEssentials2 from '../../assets/javascriptessential 2.jpg';
-import oracle_dev_gym from '../../assets/oracle_dev_gym.jpg';
+import oracleDevGym from '../../assets/oracle_dev_gym.jpg';
 import ciscoCyberSecurity from '../../assets/cybersecurity_certificate.jpg';
-import sqlonline from '../../assets/sqlonline.jpg';
+import sqlOnline from '../../assets/sqlonline.jpg';
+import promptEngineering from '../../assets/promptengineering.jpg';
 
 const certifications = [
-  {
-    title: "Google Ads Apps Certification",
-    issuer: "Google",
-    date: "March 2024",
-    image: googleAdsApps,
-  },
-  {
-    title: "Google Ads Display Certification",
-    issuer: "Google",
-    date: "March 2024",
-    image: googleAdsDisplay,
-  },
-  {
-    title: "Introduction to Cyber Security",
-    issuer: "Cisco Networking Academy",
-    date: "April 2024",
-    image: ciscoCyberSecurity,
-  },
-  {
-    title: "Databases for Developers: Foundations",
-    issuer: "Chris Saxon",
-    date: "October 2024",
-    image: oracle_dev_gym,
-  },
-  {
-    title: "SQL and Relational Databases 101",
-    issuer: "IBM Cognitive Class",
-    date: "January 2025",
-    image: sqlonline,
-  },
-  {
-    title: "JavaScript Essentials 1",
-    issuer: "Cisco Networking Academy",
-    date: "July 2025",
-    image: javascriptEssentials1,
-  },
-  {
-    title: "JavaScript Essentials 2",
-    issuer: "Cisco Networking Academy",
-    date: "July 2025",
-    image: javascriptEssentials2,
-  },
+  { title: 'Google Ads Apps Certification', issuer: 'Google', date: '2025', image: googleAdsApps },
+  { title: 'Google Ads Display Certification', issuer: 'Google', date: '2025', image: googleAdsDisplay },
+  { title: 'JavaScript Essentials 1', issuer: 'Cisco', date: '2025', image: javascriptEssentials1 },
+  { title: 'JavaScript Essentials 2', issuer: 'Cisco', date: '2025', image: javascriptEssentials2 },
+  { title: 'Databse for Developers', issuer: 'Oracle', date: '2024', image: oracleDevGym },
+  { title: 'Introduction to Cybersecurity', issuer: 'Cisco', date: '2025', image: ciscoCyberSecurity },
+  { title: 'SQL Online Course', issuer: 'IBM Cognitive Class', date: '2025', image: sqlOnline },
+  { title: 'Prompt Engineering', issuer: 'IBM Cognitive Class', date: '2025', image: promptEngineering },
 ];
 
 const Certifications = () => {
+  const [selectedCert, setSelectedCert] = useState(null);
+
+  useEffect(() => {
+    const onKey = (e) => e.key === 'Escape' && setSelectedCert(null);
+    if (selectedCert) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', onKey);
+    } else {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
+    }
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [selectedCert]);
+
   return (
-    <section className="certifications-page">
+    <section className="certifications-page" id="certifications">
       <h2 className="certTitle">My Certifications</h2>
+
       <div className="certContainer">
-        {certifications.map((cert, index) => (
-          <div className="certCard" key={index}>
+        {certifications.map((cert, idx) => (
+          <article
+            key={idx}
+            className="certCard"
+            role="button"
+            tabIndex={0}
+            onClick={() => setSelectedCert(cert)}
+            onKeyDown={(e) => e.key === 'Enter' && setSelectedCert(cert)}
+            aria-label={`Open ${cert.title} preview`}
+          >
             <img src={cert.image} alt={cert.title} className="certImg" />
             <h3>{cert.title}</h3>
             <p><strong>Issuer:</strong> {cert.issuer}</p>
             <p><strong>Date:</strong> {cert.date}</p>
-          </div>
+          </article>
         ))}
       </div>
+
+      {selectedCert && (
+        <div
+          className="certModalOverlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedCert.title} preview`}
+          onClick={() => setSelectedCert(null)}
+        >
+          <div className="certModal" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={selectedCert.image}
+              alt={selectedCert.title}
+              className="certModalImg"
+            />
+            <div className="certModalInfo">
+              <h3>{selectedCert.title}</h3>
+              <p><strong>Issuer:</strong> {selectedCert.issuer}</p>
+              <p><strong>Date:</strong> {selectedCert.date}</p>
+              <p className="certHint">(Click outside or press Esc to close)</p>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
