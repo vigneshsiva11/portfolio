@@ -1,133 +1,81 @@
-// import React, { useState } from 'react';
-// import './works.css';
-
-// import project_image_1 from '../../assets/project_image_1.png';
-// import project_image_2 from '../../assets/project_image_2.png';
-// import project_image_3 from '../../assets/project_image_3.png';
-// import project_image_4 from '../../assets/project_image_4.png';
-// import project_image_5 from '../../assets/project_image_5.png';
-// import project_image_6 from '../../assets/project_image_6.png';
-// import project_image_7 from '../../assets/project_image_7.png';
-// import project_image_8 from '../../assets/project_image_8.png';
-// import project_image_9 from '../../assets/project_image_9.png';
-// import project_image_10 from '../../assets/project_image_10.png';
-
-
-// const Works = () => {
-//   const [showMore, setShowMore] = useState(false);
-
-//   const initialImages = [
-//     project_image_2,
-//     project_image_3,
-//     project_image_5,
-//     project_image_6,
-//     project_image_10,
-//     project_image_8,
-    
-//   ];
-  
-//   const moreImages = [
-//     project_image_9,
-//     project_image_7,
-//     project_image_4,
-//     project_image_1,
-//   ];
-
-//   return (
-//     <section id='works'>
-//       <h2 className="worksTitle">My Works</h2>
-//       <span className="workDesc">
-//         I take pride in paying attention to the smallest details and making sure that my work is pixel perfect.
-//         I am excited to bring my skills and experience to help businesses <br />
-//         achieve their goals and create a strong online presence.
-//       </span>
-
-//       <div className="worksImgs">
-//         {initialImages.map((img, index) => (
-//           <img src={img} alt={`Project ${index + 1}`} key={index} className="worksImg" />
-//         ))}
-
-//         {showMore &&
-//           moreImages.map((img, index) => (
-//             <img src={img} alt={`Project ${index + 7}`} key={index + 6} className="worksImg" />
-//           ))}
-//       </div>
-
-//       <button className="workBtn" onClick={() => setShowMore(!showMore)}>
-//         {showMore ? 'Show Less' : 'See More'}
-//       </button>
-//     </section>
-//   );
-// };
-
-// export default Works;
-
-
-
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // ✅ Step 1: Import Link
 import './works.css';
 
 import project_image_1 from '../../assets/project_image_1.png';
 import project_image_2 from '../../assets/project_image_2.png';
-import project_image_3 from '../../assets/project_image_3.png';
 import project_image_4 from '../../assets/project_image_4.png';
-import project_image_5 from '../../assets/project_image_5.png';
-import project_image_6 from '../../assets/project_image_6.png';
-import project_image_7 from '../../assets/project_image_7.png';
-import project_image_8 from '../../assets/project_image_8.png';
-import project_image_9 from '../../assets/project_image_9.png';
-import project_image_10 from '../../assets/project_image_10.png';
+
+import { FaGithub } from "react-icons/fa";
 
 const Works = () => {
-  const [showMore, setShowMore] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
 
-  const initialImages = [
-    project_image_2,
-    project_image_3,
-    project_image_5,
-    project_image_6,
-    project_image_10,
-    project_image_8,
-  ];
-
-  const moreImages = [
-    project_image_9,
-    project_image_7,
-    project_image_4,
-    project_image_1,
+  const projects = [
+    {
+      img: project_image_2,
+      title: "E-Commerce Website",
+      description:
+        "A modern, responsive E-Commerce Web Application built with HTML, CSS, and Font Awesome for UI icons. This comprehensive e-commerce template features multiple pages including home, shop, about, and contact sections with a fully designed shopping front end.",
+      github: "https://github.com/vigneshsiva11/ecommerce",
+    },
+    {
+      img: project_image_4,
+      title: "Memory Matching Game",
+      description: "A simple and fun Memory Matching Game built using HTML, CSS, and JavaScript, featuring icons from Font Awesome. Test your memory skills by flipping the cards and matching pairs!",
+      github: "https://github.com/vigneshsiva11/memorygame",
+    },
+    {
+      img: project_image_1,
+      title: "Project 3",
+      description: "A simple, responsive Currency Converter Web App built using HTML, CSS, and JavaScript, powered by the Frankfurter API. Convert values between currencies with real-time exchange rates.",
+      github: "https://github.com/vigneshsiva11/currencyconverter",
+    },
   ];
 
   return (
     <section id="works">
-      <h2 className="worksTitle">What I did</h2>
+      <h2 className="worksTitle">My Projects</h2>
       <span className="workDesc">
-        I take pride in paying attention to the smallest details and making sure that my work is pixel perfect.
-        I am excited to bring my skills and experience to help businesses <br />
-        achieve their goals and create a strong online presence.
+        Here are a few of my projects. Click to learn more about each one.
       </span>
 
-      <Link to="/certifications" className="certButton">
-        View Certification
-      </Link>
-      
       <div className="worksImgs">
-        {initialImages.map((img, index) => (
-          <img src={img} alt={`Project ${index + 1}`} key={index} className="worksImg" />
+        {projects.map((project, index) => (
+          <img
+            key={index}
+            src={project.img}
+            alt={project.title}
+            className="worksImg"
+            onClick={() => setSelectedProject(project)}
+          />
         ))}
-
-        {showMore &&
-          moreImages.map((img, index) => (
-            <img src={img} alt={`Project ${index + 7}`} key={index + 6} className="worksImg" />
-          ))}
       </div>
 
-      <button className="workBtn" onClick={() => setShowMore(!showMore)}>
-        {showMore ? 'Show Less' : 'See More'}
-      </button>
+      {/* Modal */}
+      {selectedProject && (
+        <div className="modalOverlay" onClick={() => setSelectedProject(null)}>
+          <div className="modalContent" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={selectedProject.img}
+              alt={selectedProject.title}
+              className="modalImg"
+            />
+            <h3>{selectedProject.title}</h3>
+            <p className="modalDesc">{selectedProject.description}</p>
 
-      {/* ✅ Add this below the image grid */}
-      
+            <a
+              href={selectedProject.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="githubLink"
+            >
+              <FaGithub className="modalGithubIcon" />
+            </a>
+
+            <p className="modalExitText">Click anywhere to exit</p>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
