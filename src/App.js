@@ -6,20 +6,19 @@ import Intro from "./components/intro/intro";
 import Skills from "./components/skills/skills";
 import Works from "./components/works/works";
 import Contact from "./components/contact/contact";
-import Certifications from "./components/certificates/certificates"; 
+import Certifications from "./components/certificates/certificates";
 import TechStack from "./components/tech stack/techstack";
-
 
 function Home() {
   return (
-    <>
+    <div className="main-container">
       <Navbar />
       <Intro />
       <Skills />
-      <TechStack /> 
+      <TechStack />
       <Works />
       <Contact />
-    </>
+    </div>
   );
 }
 
