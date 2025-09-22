@@ -1,4 +1,5 @@
 import "./skills.css";
+import { Link } from "react-router-dom";
 import UIDesign from "../../assets/ui-design.png";
 import WebDevelopment from "../../assets/website-design.png";
 import AppDesign from "../../assets/app-design.png";
@@ -17,6 +18,15 @@ const Skills = () => {
         me to create full-stack web applications that are both functional and
         visually engaging.
       </span>
+      <div className="skillsActions">
+        <Link
+          to="/certifications"
+          className="desktopMenuBtn"
+          aria-label="View certificates"
+        >
+          Certificates
+        </Link>
+      </div>
       <div className="skillBars">
         <div className="skillBar">
           <img
