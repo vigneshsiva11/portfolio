@@ -10,6 +10,8 @@ import oracleDevGym from '../../assets/oracle_dev_gym.jpg';
 import ciscoCyberSecurity from '../../assets/cybersecurity_certificate.jpg';
 import sqlOnline from '../../assets/sqlonline.jpg';
 import promptEngineering from '../../assets/promptengineering.jpg';
+import htmlCert from '../../assets/html.png';
+import cssCert from '../../assets/css.png';
 
 const certifications = [
   { title: 'Google Ads Apps Certification', issuer: 'Google', date: '2025', image: googleAdsApps },
@@ -20,6 +22,8 @@ const certifications = [
   { title: 'Introduction to Cybersecurity', issuer: 'Cisco', date: '2025', image: ciscoCyberSecurity },
   { title: 'SQL Online Course', issuer: 'IBM Cognitive Class', date: '2025', image: sqlOnline },
   { title: 'Prompt Engineering', issuer: 'IBM Cognitive Class', date: '2025', image: promptEngineering },
+  { title: 'HTML Essentials', issuer: 'Infosys Springboard', date: 'November 2025', image: htmlCert },
+  { title: 'CSS Fundamentals', issuer: 'Infosys Springboard', date: 'November 2025', image: cssCert },
 ];
 
 const Certifications = () => {
