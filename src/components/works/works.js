@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./works.css";
 
 import project_image_1 from "../../assets/project_image_1.png";
 import project_image_2 from "../../assets/project_image_2.png";
 import project_image_4 from "../../assets/project_image_4.png";
 import classless from "../../assets/classless.png";
+import pathfinder from "../../assets/pathfinder.png";
 
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const Works = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const scrollContainerRef = useRef(null);
 
   const projects = [
     {
@@ -40,7 +42,25 @@ const Works = () => {
         "A simple, responsive Currency Converter Web App built using HTML, CSS, and JavaScript, powered by the Frankfurter API. Convert values between currencies with real-time exchange rates.",
       github: "https://github.com/vigneshsiva11/currencyconverter",
     },
+    {
+      img: pathfinder,
+      title: "Pathfinding Visualizer",
+      description:
+        "A fully interactive and responsive web application to visualize various pathfinding algorithms and maze generation techniques. Built with React, TypeScript, and Vite, this tool helps users understand how different algorithms navigate through a grid to find the shortest path between two points.",
+      github: "https://github.com/vigneshsiva11/path-finder-visualizer",
+      liveLink: "https://path-finder-algo-sigma.vercel.app/",
+    },
   ];
+
+  const scroll = (direction) => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 400;
+      scrollContainerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <section id="works">
@@ -49,16 +69,26 @@ const Works = () => {
         Here are a few of my projects. Click to learn more about each one.
       </span>
 
-      <div className="worksImgs">
-        {projects.map((project, index) => (
-          <img
-            key={index}
-            src={project.img}
-            alt={project.title}
-            className="worksImg"
-            onClick={() => setSelectedProject(project)}
-          />
-        ))}
+      <div className="carouselContainer">
+        <button className="carouselButton left" onClick={() => scroll("left")}>
+          <FaChevronLeft />
+        </button>
+
+        <div className="worksImgs" ref={scrollContainerRef}>
+          {projects.map((project, index) => (
+            <img
+              key={index}
+              src={project.img}
+              alt={project.title}
+              className="worksImg"
+              onClick={() => setSelectedProject(project)}
+            />
+          ))}
+        </div>
+
+        <button className="carouselButton right" onClick={() => scroll("right")}>
+          <FaChevronRight />
+        </button>
       </div>
 
       {/* Modal */}
@@ -73,14 +103,29 @@ const Works = () => {
             <h3>{selectedProject.title}</h3>
             <p className="modalDesc">{selectedProject.description}</p>
 
-            <a
-              href={selectedProject.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="githubLink"
-            >
-              <FaGithub className="modalGithubIcon" />
-            </a>
+            <div className="modalLinks">
+              <a
+                href={selectedProject.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="modalButton githubButton"
+              >
+                <FaGithub className="buttonIcon" />
+                <span>GitHub</span>
+              </a>
+
+              {selectedProject.liveLink && (
+                <a
+                  href={selectedProject.liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="modalButton liveButton"
+                >
+                  <FaExternalLinkAlt className="buttonIcon" />
+                  <span>Live Demo</span>
+                </a>
+              )}
+            </div>
 
             <p className="modalExitText">Click anywhere to exit</p>
           </div>
