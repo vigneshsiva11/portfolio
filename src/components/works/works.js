@@ -7,9 +7,17 @@ import project_image_2 from "../../assets/project_image_2.png";
 import project_image_4 from "../../assets/project_image_4.png";
 import classless from "../../assets/classless.png";
 import pathfinder from "../../assets/pathfinder.png";
+import quickchat from "../../assets/quickchat.png";
 
 const Works = () => {
   const projects = [
+    {
+      img: quickchat,
+      title: "QuickChat - AI-Powered MERN Chat App",
+      description:
+        "A modern, full-stack MERN chat application featuring real-time messaging, comprehensive AI capabilities powered by Google Gemini, and a beautiful glassmorphic UI. Experience intelligent conversations with built-in safety moderation, language translation, and voice-to-text features.",
+      github: "https://github.com/vigneshsiva11/chat-app-mern",
+    },
     {
       img: classless,
       title: "Classless - Inclusive AI Tutor",
