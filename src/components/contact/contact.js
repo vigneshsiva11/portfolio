@@ -1,75 +1,60 @@
-import React, { useRef } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 import "./contact.css";
-import emailjs from "@emailjs/browser";
 
 const Contact = () => {
-  const form = useRef();
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    const name = form.current.from_name.value.trim();
-    const email = form.current.from_email.value.trim();
-    const message = form.current.message.value.trim();
-
-    if (!name || !email || !message) {
-      alert("Please fill in all fields before submitting.");
-      return;
-    }
-
-    emailjs
-      .sendForm(
-        "service_emszi5w",
-        "template_kbf4syn",
-        form.current,
-        "xFYSieGOHqkX-8X7C"
-      )
-      .then(
-        (result) => {
-          console.log("SUCCESS!", result.text);
-          alert("Message sent successfully!");
-          e.target.reset();
-        },
-        (error) => {
-          console.log("FAILED...", error.text);
-          alert("Failed to send message. Please try again.");
-        }
-      );
-  };
-
   return (
-    <div>
-      <section id="contactPage">
-        <div id="contact">
-          <h1 className="contactPageTitle">Contact Me</h1>
-          <span className="constDesc">
+    <section id="contact" className="contactSection">
+      <div className="sectionShell contactShell">
+        <motion.div
+          className="contactLeft"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="contactPageTitle">Contact Me!</h2>
+          <p className="constDesc">
             Please fill out the form below to discuss any work opportunities.
-          </span>
-          <form className="contactForm" ref={form} onSubmit={sendEmail}>
-            <input
-              type="text"
-              className="name"
-              placeholder="your Name"
-              name="from_name"
-            />
-            <input
-              type="email"
-              className="email"
-              placeholder="your Email"
-              name="from_email"
-            />
-            <textarea
-              className="msg"
-              name="message"
-              rows="5"
-              placeholder="your Message"
-            ></textarea>
-            <button type="submit" value="send" className="submitBtn">
-              Submit
-            </button>
-          </form>
-        </div>
-      </section>
-    </div>
+          </p>
+          <a
+            className="emailCta"
+            href="mailto:vigneshsiva11@gmail.com?subject=Lets%20work%20together!&body=Hello%2C%20I%20think%20we%20need%20you%20to%20work%20on%2Fcollaborate%20this%20particular%20product...%20Reach%20out%20as%20soon%20as%20you%20can."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Send me an email
+          </a>
+        </motion.div>
+
+        <motion.div
+          className="contactRight"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <div className="contactSocials">
+            <a
+              href="https://github.com/vigneshsiva11"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contactSocialCode"
+            >
+              GH
+            </a>
+            <a
+              href="https://www.linkedin.com/in/vignesh-s-05ba4b301/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contactSocialCode"
+            >
+              LN
+            </a>
+          </div>
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

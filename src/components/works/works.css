@@ -1,332 +1,207 @@
-#works {
-  margin: 0 auto;
-  min-height: calc(100vh - 4rem);
-  width: 100%;
-  max-width: 1200px;
+.worksSection {
+  padding: 5rem 0;
+  background:
+    radial-gradient(46% 55% at 25% 35%, rgba(255, 255, 255, 0.04), transparent 70%),
+    linear-gradient(180deg, #0d1018 0%, #0e1016 100%);
+  border-top: 1px solid rgba(228, 222, 215, 0.08);
+  border-bottom: 1px solid rgba(228, 222, 215, 0.08);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 4rem 2rem;
-  box-sizing: border-box;
-  background: #000;
 }
 
 .worksTitle {
-  margin: 1rem 0;
-  font-size: 3rem;
-  font-weight: 700;
-  color: white;
+  text-align: center;
+  font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+.worksShell {
+  width: min(1240px, 92vw);
+  margin: 0 auto;
 }
 
 .workDesc {
-  font-weight: 300;
-  font-size: 1rem;
-  max-width: 600px;
-  color: #ccc;
-  line-height: 1.6;
-  margin-bottom: 3rem;
+  max-width: 680px;
+  margin: 1rem auto 0;
+  text-align: center;
+  color: var(--text-muted);
 }
 
-/* Carousel Container */
-.carouselContainer {
+.workCards {
+  margin-top: 2.4rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.1rem;
+}
+
+.workCard {
+  min-height: 560px;
+  border-radius: var(--card-radius);
+  background: #1f2534;
+  border: 1px solid rgba(228, 222, 215, 0.1);
+  display: grid;
+  grid-template-columns: 1fr minmax(380px, 50%);
+  overflow: hidden;
   position: relative;
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.3);
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
   width: 100%;
-  max-width: 1200px;
-  margin: 2rem auto;
+  max-width: 1240px;
+  margin-inline: auto;
+}
+
+.workCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 58px rgba(0, 0, 0, 0.36);
+  border-color: rgba(228, 222, 215, 0.2);
+}
+
+.workCard:nth-child(2n) {
+  background: #232a3c;
+}
+
+.workContent {
+  padding: 2.35rem 2.45rem;
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-.carouselButton {
-  background: rgba(255, 107, 53, 0.8);
-  border: none;
-  color: white;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
+.workActions {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-  z-index: 10;
+  gap: 0.9rem;
+  margin-bottom: 2rem;
 }
 
-.carouselButton:hover {
-  background: rgba(255, 107, 53, 1);
-  transform: scale(1.1);
+.workActionBtn {
+  width: 86px;
+  height: 86px;
+  border-radius: 999px;
+  background: #f3f3f4;
+  color: #0e1016;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  border: 1px solid rgba(14, 16, 22, 0.08);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
 }
 
-.carouselButton.left {
-  margin-right: 0.5rem;
+.workActionBtn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.26);
+  background: #ffffff;
 }
 
-.carouselButton.right {
-  margin-left: 0.5rem;
+.workContent h3 {
+  font-size: clamp(2rem, 3.8vw, 3.1rem);
+  line-height: 1;
+  margin-bottom: 0.9rem;
+  max-width: 540px;
+  overflow-wrap: anywhere;
 }
 
-.worksImgs {
-  display: flex;
-  align-items: center;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  gap: 2rem;
-  padding: 1rem;
-  flex: 1;
-  scrollbar-width: none;
-  /* Firefox */
-  -ms-overflow-style: none;
-  /* IE and Edge */
+.workContent p {
+  color: var(--text-muted);
+  line-height: 1.68;
+  max-width: 510px;
+  font-size: clamp(0.92rem, 1.2vw, 1.02rem);
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.worksImgs::-webkit-scrollbar {
-  display: none;
+.workImageWrap {
+  align-self: end;
+  justify-self: end;
+  width: 100%;
+  max-width: 700px;
+  padding: 0 0.95rem 0;
 }
 
 .worksImg {
-  object-fit: cover;
-  height: 20rem;
-  width: auto;
-  min-width: 300px;
-  max-width: 400px;
-  border-radius: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid #333;
-  flex-shrink: 0;
-}
-
-.worksImg:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-/* Hide old "See More" button */
-.workBtn {
-  display: none;
-}
-
-/* Certification button */
-.certButton {
-  display: inline-block;
-  margin-top: 1.5rem;
-  padding: 0.75rem 1.5rem;
-  background-color: #ff6b35;
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  border-radius: 2rem;
-  transition: all 0.3s ease;
-}
-
-.certButton:hover {
-  background-color: #e55a2b;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-}
-
-/* Modal styles */
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease;
-}
-
-.modalContent {
-  background: #1a1a1a;
-  padding: 2rem;
-  border-radius: 1rem;
-  text-align: center;
-  max-width: 500px;
-  width: 90%;
-  position: relative;
-  animation: scaleIn 0.3s ease;
-  border: 1px solid #333;
-  color: white;
-}
-
-.modalImg {
   width: 100%;
-  border-radius: 0.5rem;
-  margin-bottom: 1rem;
+  border-radius: 20px 20px 0 0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.modalContent h3 {
-  color: #ff6b35;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-
-/* New description text */
-.modalDesc {
-  margin: 1rem 0 1.5rem;
-  font-size: 1rem;
-  font-weight: 300;
-  color: #ccc;
-  line-height: 1.6;
-}
-
-/* Modal Links Container */
-.modalLinks {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1.5rem;
-}
-
-.modalButton {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.githubButton {
-  background: #ff6b35;
-  color: white;
-}
-
-.githubButton:hover {
-  background: #e55a2b;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
-}
-
-.liveButton {
-  background: #4CAF50;
-  color: white;
-}
-
-.liveButton:hover {
-  background: #45a049;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
-}
-
-.buttonIcon {
-  font-size: 1.2rem;
-}
-
-/*  Exit hint */
-.modalExitText {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #666;
-  font-style: italic;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+@media (max-width: 980px) {
+  .worksShell {
+    width: min(1080px, 92vw);
   }
 
-  to {
-    opacity: 1;
+  .workCard {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .workImageWrap {
+    max-width: 100%;
+    padding: 0 1rem 1rem;
+  }
+
+  .worksImg {
+    border-radius: 18px;
+  }
+
+  .workContent {
+    padding: 1.45rem;
+  }
+
+  .workContent h3 {
+    font-size: clamp(1.7rem, 7vw, 2.4rem);
+  }
+
+  .workActions {
+    margin-bottom: 1.2rem;
+  }
+
+  .workActionBtn {
+    width: 68px;
+    height: 68px;
+    font-size: 1.55rem;
   }
 }
 
-@keyframes scaleIn {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* Mobile fix */
-@media screen and (max-width: 768px) {
-  #works {
-    padding: 3rem 1rem;
+@media (max-width: 640px) {
+  .worksSection {
+    padding: 3.8rem 0;
   }
 
   .worksTitle {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 9vw, 2.6rem);
   }
 
-  .carouselContainer {
-    gap: 0.5rem;
+  .workDesc {
+    font-size: 0.92rem;
   }
 
-  .carouselButton {
-    width: 40px;
-    height: 40px;
+  .workCards {
+    gap: 1.4rem;
+  }
+
+  .workActionBtn {
+    width: 56px;
+    height: 56px;
     font-size: 1.2rem;
   }
 
-  .worksImgs {
-    gap: 1rem;
+  .workContent {
+    padding: 1.15rem;
   }
 
-  .worksImg {
-    height: 15rem;
-    min-width: 250px;
-    max-width: 350px;
+  .workContent h3 {
+    font-size: clamp(1.4rem, 7.6vw, 2rem);
   }
 
-  .modalLinks {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .modalButton {
-    width: 100%;
-    justify-content: center;
+  .workContent p {
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 }
 
-@media screen and (max-width: 585px) {
-  .worksImg {
-    height: 12rem;
-    min-width: 200px;
-    max-width: 300px;
-  }
-
-  .modalContent {
-    padding: 1.5rem;
-  }
-
-  .worksTitle {
-    font-size: 2rem;
-  }
-
-  .modalContent h3 {
-    font-size: 1.3rem;
-  }
-
-  .modalDesc {
-    font-size: 0.9rem;
-  }
-
-  .carouselButton {
-    width: 35px;
-    height: 35px;
-    font-size: 1rem;
+@media (max-width: 400px) {
+  .workActionBtn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.02rem;
   }
 }

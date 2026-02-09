@@ -1,90 +1,63 @@
 import "./skills.css";
-import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import UIDesign from "../../assets/ui-design.png";
 import WebDevelopment from "../../assets/website-design.png";
-import AppDesign from "../../assets/app-design.png";
+
+const skillItems = [
+  {
+    img: UIDesign,
+    alt: "UI/UX Design",
+    title: "UI/UX Design",
+    description: "Creating user interfaces with modern design principles.",
+  },
+  {
+    img: WebDevelopment,
+    alt: "Web Development",
+    title: "Web Development",
+    description:
+      "Building responsive and dynamic websites using HTML, CSS, JavaScript, and React.",
+  },
+];
 
 const Skills = () => {
   return (
-    <section id="skills">
-      <span className="skilltitle">What I do</span>
-      <span className="skillDesc">
-        I am a skilled and passionate web designer with experience in creating
-        visually appealing and user-friendly websites. I have a strong
-        understanding of design principles with proficiency in HTML, CSS, and
-        JavaScript. In addition to front-end design, I also work as a Java
-        developer, building scalable backend systems using Java, Spring Boot,
-        and Hibernate. This combination of design and development skills allows
-        me to create full-stack web applications that are both functional and
-        visually engaging.
-      </span>
-      <div className="skillsActions">
-        <Link
-          to="/certifications"
-          className="desktopMenuBtn"
-          aria-label="View certificates"
+    <section id="skills" className="skillsSection">
+      <div className="sectionShell">
+        <motion.h2
+          className="skillsTitle"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.6 }}
         >
-          Certificates
-        </Link>
-      </div>
-      <div className="skillBars">
-        <div className="skillBar">
-          <img
-            src={UIDesign}
-            alt="UI/UX Design"
-            className="skillBarImg"
-            onError={(e) => {
-              console.log("UI Design image failed to load:", e.target.src);
-            }}
-          />
-          <div className="skillBarText">
-            <h2>UI/UX Design</h2>
-            <p>Creating user interfaces with modern design principles.</p>
-          </div>
-        </div>
-      </div>
-      <div className="skillBars">
-        <div className="skillBar">
-          <img
-            src={WebDevelopment}
-            alt="Web Development"
-            className="skillBarImg"
-            onError={(e) => {
-              console.log(
-                "Web Development image failed to load:",
-                e.target.src
-              );
-            }}
-          />
-          <div className="skillBarText">
-            <h2>Web Development</h2>
-            <p>
-              Building responsive and dynamic websites using HTML, CSS,
-              JavaScript, and React.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="skillBars">
-        <div className="skillBar">
-          <img
-            src={AppDesign}
-            alt="Java Development"
-            className="skillBarImg"
-            onError={(e) => {
-              console.log(
-                "Java Development image failed to load:",
-                e.target.src
-              );
-            }}
-          />
-          <div className="skillBarText">
-            <h2>Java Development</h2>
-            <p>
-              Developing robust and scalable backend systems using Java, Spring
-              Boot, and Hibernate.
-            </p>
-          </div>
+          What I do
+        </motion.h2>
+
+        <motion.p
+          className="skillsDesc"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          I’m a passionate web developer who builds clean, user-friendly interfaces with React, HTML, CSS, and JavaScript, backed by scalable server-side solutions using Node.js, and Express. With experience in databases like MongoDB and SQL, I create full-stack applications that are visually refined, performant, and built to scale — where design meets reliable engineering.
+        </motion.p>
+
+        <div className="skillsGrid">
+          {skillItems.map((skill, index) => (
+            <motion.article
+              key={skill.title}
+              className="skillCard"
+              initial={{ opacity: 0, y: 36 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.55, delay: index * 0.08 }}
+            >
+              <img src={skill.img} alt={skill.alt} className="skillCardIcon" />
+              <h3>{skill.title}</h3>
+              <p>{skill.description}</p>
+            </motion.article>
+          ))}
         </div>
       </div>
     </section>

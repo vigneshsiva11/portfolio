@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import "./works.css";
 
 import project_image_1 from "../../assets/project_image_1.png";
@@ -7,12 +8,7 @@ import project_image_4 from "../../assets/project_image_4.png";
 import classless from "../../assets/classless.png";
 import pathfinder from "../../assets/pathfinder.png";
 
-import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-
 const Works = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const scrollContainerRef = useRef(null);
-
   const projects = [
     {
       img: classless,
@@ -27,6 +23,7 @@ const Works = () => {
       description:
         "A modern, responsive E-Commerce Web Application built with HTML, CSS, and Font Awesome for UI icons. This comprehensive e-commerce template features multiple pages including home, shop, about, and contact sections with a fully designed shopping front end.",
       github: "https://github.com/vigneshsiva11/ecommerce",
+      liveLink: "https://e-com-fe-eosin.vercel.app/",
     },
     {
       img: project_image_4,
@@ -34,6 +31,7 @@ const Works = () => {
       description:
         "A simple and fun Memory Matching Game built using HTML, CSS, and JavaScript, featuring icons from Font Awesome. Test your memory skills by flipping the cards and matching pairs!",
       github: "https://github.com/vigneshsiva11/memorygame",
+      liveLink: "https://flip-here.vercel.app",
     },
     {
       img: project_image_1,
@@ -41,6 +39,7 @@ const Works = () => {
       description:
         "A simple, responsive Currency Converter Web App built using HTML, CSS, and JavaScript, powered by the Frankfurter API. Convert values between currencies with real-time exchange rates.",
       github: "https://github.com/vigneshsiva11/currencyconverter",
+      liveLink: "https://currency-here.vercel.app",
     },
     {
       img: pathfinder,
@@ -52,85 +51,71 @@ const Works = () => {
     },
   ];
 
-  const scroll = (direction) => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = 400;
-      scrollContainerRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
-    <section id="works">
-      <h2 className="worksTitle">My Projects</h2>
-      <span className="workDesc">
-        Here are a few of my projects. Click to learn more about each one.
-      </span>
+    <section id="works" className="worksSection">
+      <div className="sectionShell worksShell">
+        <motion.h2
+          className="worksTitle"
+          initial={{ opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.55 }}
+        >
+          My Projects
+        </motion.h2>
+        <motion.p
+          className="workDesc"
+          initial={{ opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.55, delay: 0.1 }}
+        >
+          Here are a few of my projects. Click to learn more about each one.
+        </motion.p>
 
-      <div className="carouselContainer">
-        <button className="carouselButton left" onClick={() => scroll("left")}>
-          <FaChevronLeft />
-        </button>
-
-        <div className="worksImgs" ref={scrollContainerRef}>
+        <div className="workCards">
           {projects.map((project, index) => (
-            <img
-              key={index}
-              src={project.img}
-              alt={project.title}
-              className="worksImg"
-              onClick={() => setSelectedProject(project)}
-            />
+            <motion.article
+              key={project.title}
+              className="workCard"
+              initial={{ opacity: 0, y: 38 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.55, delay: index * 0.08 }}
+            >
+              <div className="workContent">
+                <div className="workActions">
+                  <a
+                    className="workActionBtn"
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${project.title} GitHub`}
+                  >
+                    <FaGithub />
+                  </a>
+                  {project.liveLink && (
+                    <a
+                      className="workActionBtn"
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} Live Demo`}
+                    >
+                      <FaExternalLinkAlt />
+                    </a>
+                  )}
+                </div>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+              </div>
+              <div className="workImageWrap">
+                <img src={project.img} alt={project.title} className="worksImg" />
+              </div>
+            </motion.article>
           ))}
         </div>
-
-        <button className="carouselButton right" onClick={() => scroll("right")}>
-          <FaChevronRight />
-        </button>
       </div>
-
-      {/* Modal */}
-      {selectedProject && (
-        <div className="modalOverlay" onClick={() => setSelectedProject(null)}>
-          <div className="modalContent" onClick={(e) => e.stopPropagation()}>
-            <img
-              src={selectedProject.img}
-              alt={selectedProject.title}
-              className="modalImg"
-            />
-            <h3>{selectedProject.title}</h3>
-            <p className="modalDesc">{selectedProject.description}</p>
-
-            <div className="modalLinks">
-              <a
-                href={selectedProject.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="modalButton githubButton"
-              >
-                <FaGithub className="buttonIcon" />
-                <span>GitHub</span>
-              </a>
-
-              {selectedProject.liveLink && (
-                <a
-                  href={selectedProject.liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="modalButton liveButton"
-                >
-                  <FaExternalLinkAlt className="buttonIcon" />
-                  <span>Live Demo</span>
-                </a>
-              )}
-            </div>
-
-            <p className="modalExitText">Click anywhere to exit</p>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

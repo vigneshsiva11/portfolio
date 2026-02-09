@@ -1,121 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&display=swap");
+@import url("https://fonts.cdnfonts.com/css/mona-sans");
+
+:root {
+  --bg: #0e1016;
+  --surface: #161922;
+  --surface-soft: #212531;
+  --text-main: #e4ded7;
+  --text-muted: #95979d;
+  --line: rgba(228, 222, 215, 0.2);
+  --card-radius: 28px;
+  --container: min(1200px, 90vw);
+  --cursor-x: -100px;
+  --cursor-y: -100px;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
-
-body {
-  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  color: white;
+html {
+  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
-/* Add subtle geometric patterns to background */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.02) 25%,
-      transparent 25%
-    ),
-    linear-gradient(-45deg, rgba(255, 255, 255, 0.02) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.02) 75%),
-    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.02) 75%);
-  background-size: 60px 60px;
-  background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
-  pointer-events: none;
-  z-index: -1;
+body {
+  font-family: "Mona Sans", "Manrope", "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text-main);
+  line-height: 1.45;
+  overflow-x: hidden;
+  cursor: none;
+  min-width: 320px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+body * {
+  cursor: none;
 }
 
-/* Global button styles */
-.btn-primary {
-  background: #ff6b35;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 2rem;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
+@media (pointer: coarse) {
+  body,
+  body * {
+    cursor: auto;
+  }
+
+  .cursorRing,
+  .cursorDot {
+    display: none;
+  }
 }
 
-.btn-primary:hover {
-  background: #e55a2b;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Syne", "Mona Sans", sans-serif;
 }
 
-.btn-secondary {
-  background: transparent;
-  color: white;
-  border: 1px solid white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 2rem;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-}
-
-.btn-secondary:hover {
-  background: white;
-  color: #1a1a1a;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
-}
-
-/* Main container styling */
 .main-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #000;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  position: relative;
+  width: 100%;
+  background: var(--bg);
 }
 
-/* Scrollbar styling */
+.sectionShell {
+  width: min(1240px, 92vw);
+  margin: 0 auto;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 480px) {
+  .sectionShell {
+    width: 94vw;
+  }
+}
+
+.cursorRing,
+.cursorDot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate3d(var(--cursor-x), var(--cursor-y), 0);
+}
+
+.cursorRing {
+  width: 26px;
+  height: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  border-radius: 50%;
+  margin-left: -13px;
+  margin-top: -13px;
+  transition: transform 0.14s ease-out, opacity 0.14s ease-out, border-color 0.14s ease-out;
+}
+
+.cursorDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ffffff;
+  margin-left: -2.5px;
+  margin-top: -2.5px;
+  opacity: 0.88;
+  transition: transform 0.14s ease-out, opacity 0.14s ease-out;
+}
+
+html.is-cursor-hover .cursorRing {
+  transform: translate3d(var(--cursor-x), var(--cursor-y), 0) scale(1.45);
+  border-color: rgba(255, 255, 255, 0.88);
+}
+
+html.is-cursor-hover .cursorDot {
+  transform: translate3d(var(--cursor-x), var(--cursor-y), 0) scale(0.85);
+}
+
+html.is-cursor-down .cursorRing {
+  transform: translate3d(var(--cursor-x), var(--cursor-y), 0) scale(1.1);
+}
+
+html.is-cursor-down .cursorDot {
+  transform: translate3d(var(--cursor-x), var(--cursor-y), 0) scale(1.25);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.isVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ff6b35;
-  border-radius: 4px;
+  background: #212531;
+  border-radius: 999px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #e55a2b;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }

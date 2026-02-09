@@ -1,4 +1,5 @@
 import "./techstack.css";
+import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHtml5,
@@ -16,147 +17,99 @@ import {
   faCode,
   faServer,
   faWind,
+  faLeaf,
 } from "@fortawesome/free-solid-svg-icons";
 
+const techGroups = [
+  {
+    title: "Frontend",
+    items: [
+      { name: "HTML5", icon: faHtml5, color: "#E34F26" },
+      { name: "CSS3", icon: faCss3Alt, color: "#1572B6" },
+      { name: "JavaScript", icon: faJs, color: "#F7DF1E" },
+      { name: "React", icon: faReact, color: "#61DAFB" },
+      { name: "Tailwind CSS", icon: faWind, color: "#06B6D4" },
+    ],
+  },
+  {
+    title: "Backend",
+    items: [
+      { name: "Java", icon: faJava, color: "#ED8B00" },
+      { name: "Node.js", icon: faNodeJs, color: "#339933" },
+      { name: "Express.js", icon: faServer, color: "#D6D6D6" },
+    ],
+  },
+  {
+    title: "Programming Languages",
+    items: [
+      { name: "Java", icon: faJava, color: "#ED8B00" },
+      { name: "C++", icon: faCode, color: "#00599C" },
+    ],
+  },
+  {
+    title: "Database",
+    items: [
+      { name: "SQL", icon: faDatabase, color: "#336791" },
+      { name: "MongoDB", icon: faLeaf, color: "#47A248" },
+    ],
+  },
+  {
+    title: "Tools & Others",
+    items: [
+      { name: "Git", icon: faGitAlt, color: "#F05032" },
+      { name: "GitHub", icon: faGithub, color: "#F9F9F9" },
+      { name: "VS Code", icon: faCode, color: "#007ACC" },
+      { name: "Figma", icon: faFigma, color: "#F24E1E" },
+    ],
+  },
+];
+
 const TechStack = () => {
-  const frontendTechs = [
-    { name: "HTML5", icon: faHtml5, color: "#E34F26" },
-    { name: "CSS3", icon: faCss3Alt, color: "#1572B6" },
-    { name: "JavaScript", icon: faJs, color: "#F7DF1E" },
-    { name: "React", icon: faReact, color: "#61DAFB" },
-    { name: "Tailwind CSS", icon: faWind, color: "#06B6D4" },
-  ];
-
-  const backendTechs = [
-    { name: "Java", icon: faJava, color: "#ED8B00" },
-    { name: "Node.js", icon: faNodeJs, color: "#339933" },
-    { name: "Express.js", icon: faServer, color: "#000000" },
-  ];
-
-  const programmingLanguages = [
-    { name: "Java", icon: faJava, color: "#ED8B00" },
-    { name: "C++", icon: faCode, color: "#00599C" },
-  ];
-
-  const databases = [{ name: "SQL", icon: faDatabase, color: "#336791" }];
-
-  const tools = [
-    { name: "Git", icon: faGitAlt, color: "#F05032" },
-    { name: "GitHub", icon: faGithub, color: "#181717" },
-    { name: "VS Code", icon: faCode, color: "#007ACC" },
-    { name: "Figma", icon: faFigma, color: "#F24E1E" },
-  ];
-
   return (
-    <section id="techstack">
-      <h2 className="techStackTitle">Tech Stack</h2>
-      <span className="techStackDesc">
-        Technologies and tools I use to bring ideas to life
-      </span>
+    <section id="techstack" className="techSection">
+      <div className="sectionShell">
+        <motion.h2
+          className="techTitle"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.6 }}
+        >
+          Tech Stack
+        </motion.h2>
+        <motion.p
+          className="techDesc"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.6, delay: 0.08 }}
+        >
+          Technologies and tools I use to bring ideas to life
+        </motion.p>
 
-      <div className="techStackContainer">
-        {/* Frontend Technologies */}
-        <div className="techCategory">
-          <h3 className="categoryTitle">Frontend</h3>
-          <div className="techGrid">
-            {frontendTechs.map((tech, index) => (
-              <div key={index} className="techItem">
-                <div className="techIcon">
-                  <FontAwesomeIcon
-                    icon={tech.icon}
-                    style={{ color: tech.color, fontSize: "2.5rem" }}
-                  />
-                </div>
-                <div className="techInfo">
-                  <h4>{tech.name}</h4>
-                </div>
+        <div className="techGroups">
+          {techGroups.map((group, gIndex) => (
+            <motion.article
+              key={group.title}
+              className="techGroup"
+              initial={{ opacity: 0, y: 36 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.55, delay: gIndex * 0.06 }}
+            >
+              <h3>{group.title}</h3>
+              <div className="techItems">
+                {group.items.map((item) => (
+                  <div key={`${group.title}-${item.name}`} className="techItemCard">
+                    <span className="techIconWrap">
+                      <FontAwesomeIcon icon={item.icon} style={{ color: item.color }} />
+                    </span>
+                    <span className="techLabel">{item.name}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Backend Technologies */}
-        <div className="techCategory">
-          <h3 className="categoryTitle">Backend</h3>
-          <div className="techGrid">
-            {backendTechs.map((tech, index) => (
-              <div key={index} className="techItem">
-                <div className="techIcon">
-                  <FontAwesomeIcon
-                    icon={tech.icon}
-                    style={{ color: tech.color, fontSize: "2.5rem" }}
-                  />
-                </div>
-                <div className="techInfo">
-                  <h4>{tech.name}</h4>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Programming Languages */}
-        <div className="techCategory">
-          <h3 className="categoryTitle">Programming Languages</h3>
-          <div className="techGrid">
-            {programmingLanguages.map((lang, index) => (
-              <div key={index} className="techItem">
-                <div className="techIcon">
-                  <FontAwesomeIcon
-                    icon={lang.icon}
-                    style={{ color: lang.color, fontSize: "2.5rem" }}
-                  />
-                </div>
-                <div className="techInfo">
-                  <h4>{lang.name}</h4>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Database */}
-        <div className="techCategory">
-          <h3 className="categoryTitle">Database</h3>
-          <div className="techGrid">
-            {databases.map((database, index) => (
-              <div key={index} className="techItem">
-                <div className="techIcon">
-                  <FontAwesomeIcon
-                    icon={database.icon}
-                    style={{ color: database.color, fontSize: "2.5rem" }}
-                  />
-                </div>
-                <div className="techInfo">
-                  <h4>{database.name}</h4>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Tools & Others */}
-        <div className="techCategory">
-          <h3 className="categoryTitle">Tools & Others</h3>
-          <div className="toolsGrid">
-            {tools.map((tool, index) => (
-              <div key={index} className="toolItem">
-                <div className="toolIcon">
-                  <FontAwesomeIcon
-                    icon={tool.icon}
-                    style={{ color: tool.color, fontSize: "2.5rem" }}
-                    onError={(e) => {
-                      console.log(
-                        "FontAwesome icon failed to load:",
-                        tool.name
-                      );
-                    }}
-                  />
-                </div>
-                <span className="toolName">{tool.name}</span>
-              </div>
-            ))}
-          </div>
+            </motion.article>
+          ))}
         </div>
       </div>
     </section>

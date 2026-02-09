@@ -1,153 +1,69 @@
-import React, { useState } from "react";
 import "./navbar.css";
-import { Link } from "react-scroll";
-// import logo from '../../assets/logo.png'
-import menu from "../../assets/menu.png";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
+const navItems = [
+  { id: "intro", label: "Home" },
+  { id: "skills", label: "About" },
+  { id: "works", label: "Work" },
+  { id: "contact", label: "Contact" },
+];
 
 const Navbar = () => {
-  const [showMenu, setShowMenu] = useState(false);
+  const [activeId, setActiveId] = useState("intro");
+
+  useEffect(() => {
+    const updateActiveSection = () => {
+      const scrollMarker = window.scrollY + window.innerHeight * 0.45;
+      let nextActive = navItems[0].id;
+
+      for (const item of navItems) {
+        const section = document.getElementById(item.id);
+        if (!section) continue;
+        if (section.offsetTop <= scrollMarker) {
+          nextActive = item.id;
+        }
+      }
+
+      setActiveId(nextActive);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, []);
+
+  const handleNavClick = (id) => {
+    const target = document.getElementById(id);
+    if (!target) return;
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    setActiveId(id);
+  };
+
   return (
-    <nav className="navbar">
-      <div className="logo"></div>
-      <div className="desktopMenu">
-        <Link
-          activeClass="active"
-          to="intro"
-          spy={true}
-          smooth={true}
-          offset={-85}
-          duration={500}
-          className="desktopMenuListItem"
+    <motion.nav
+      className="navbar"
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+    >
+      {navItems.map((item) => (
+        <button
+          key={item.id}
+          type="button"
+          className={`navItem${activeId === item.id ? " active" : ""}`}
+          aria-current={activeId === item.id ? "page" : undefined}
+          onClick={() => handleNavClick(item.id)}
         >
-          Home
-        </Link>
-        <Link
-          activeClass="active"
-          to="skills"
-          spy={true}
-          smooth={true}
-          offset={-85}
-          duration={500}
-          className="desktopMenuListItem"
-        >
-          About
-        </Link>
-        <Link
-          activeClass="active"
-          to="techstack"
-          spy={true}
-          smooth={true}
-          offset={-85}
-          duration={500}
-          className="desktopMenuListItem"
-        >
-          Tech Stack
-        </Link>
-        <Link
-          activeClass="active"
-          to="works"
-          spy={true}
-          smooth={true}
-          offset={-85}
-          duration={500}
-          className="desktopMenuListItem"
-        >
-          Works
-        </Link>
-        <Link
-          activeClass="active"
-          to="contact"
-          spy={true}
-          smooth={true}
-          offset={-85}
-          duration={500}
-          className="desktopMenuListItem"
-        >
-          Contact me
-        </Link>
-      </div>
-
-      <Link
-        to="contact"
-        smooth={true}
-        duration={500}
-        offset={-85}
-        spy={true}
-        activeClass="active"
-        className="desktopMenuBtn"
-      >
-        Hire Me
-      </Link>
-
-      <img
-        src={menu}
-        alt="menu"
-        className="mobMenu"
-        onClick={() => setShowMenu(!showMenu)}
-      />
-      <div className="navMenu" style={{ display: showMenu ? "flex" : "none" }}>
-        <Link
-          activeClass="active"
-          to="intro"
-          spy={true}
-          smooth={true}
-          offset={-75}
-          duration={500}
-          className="ListItem"
-          onClick={() => setShowMenu(false)}
-        >
-          Home
-        </Link>
-        <Link
-          activeClass="active"
-          to="skills"
-          spy={true}
-          smooth={true}
-          offset={-75}
-          duration={500}
-          className="ListItem"
-          onClick={() => setShowMenu(false)}
-        >
-          About
-        </Link>
-        <Link
-          activeClass="active"
-          to="techstack"
-          spy={true}
-          smooth={true}
-          offset={-75}
-          duration={500}
-          className="ListItem"
-          onClick={() => setShowMenu(false)}
-        >
-          Tech Stack
-        </Link>
-        <Link
-          activeClass="active"
-          to="works"
-          spy={true}
-          smooth={true}
-          offset={-75}
-          duration={500}
-          className="ListItem"
-          onClick={() => setShowMenu(false)}
-        >
-          Works
-        </Link>
-        <Link
-          activeClass="active"
-          to="contact"
-          spy={true}
-          smooth={true}
-          offset={-75}
-          duration={500}
-          className="ListItem"
-          onClick={() => setShowMenu(false)}
-        >
-          Contacts
-        </Link>
-      </div>
-    </nav>
+          {item.label}
+        </button>
+      ))}
+    </motion.nav>
   );
 };
 
