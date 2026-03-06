@@ -31,6 +31,21 @@ export const useMusicController = () => {
     };
   }, [state.isPlaying, state.hasSessionButtonInteraction, state.promptDismissed]);
 
+  useEffect(() => {
+    if (!showPrompt) {
+      return undefined;
+    }
+
+    const autoDismissTimer = window.setTimeout(() => {
+      dismissMusicPrompt();
+      setShowPrompt(false);
+    }, 6000);
+
+    return () => {
+      window.clearTimeout(autoDismissTimer);
+    };
+  }, [showPrompt]);
+
   const dismissPrompt = () => {
     dismissMusicPrompt();
     setShowPrompt(false);

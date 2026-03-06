@@ -212,7 +212,8 @@
   padding: 14px 14px 14px 12px;
   border: 1px solid rgba(228, 222, 215, 0.16);
   border-radius: 16px;
-  background: rgba(17, 20, 30, 0.92);
+  background: rgba(34, 39, 55, 0.88);
+  backdrop-filter: blur(10px);
   color: var(--text-main);
   display: flex;
   align-items: flex-start;
@@ -229,6 +230,40 @@
   opacity: 1;
   transform: translate3d(0, 0, 0);
   pointer-events: auto;
+}
+
+.audioPromptProgress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 0 0 16px 16px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.audioPromptProgressBar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, #8d6bff 0%, #b89dff 52%, #dbcfff 100%);
+}
+
+.audioPrompt.isVisible .audioPromptProgressBar {
+  animation: audioPromptTimer 6s linear forwards;
+}
+
+@keyframes audioPromptTimer {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .audioPromptIcon {

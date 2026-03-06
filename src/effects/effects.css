@@ -81,8 +81,7 @@
   opacity: 0.9;
 }
 
-@media (pointer: coarse), (prefers-reduced-motion: reduce) {
-  .fx-background-root,
+@media (pointer: coarse) {
   .fx-cursor-root {
     display: none !important;
   }

@@ -115,6 +115,9 @@ const Intro = () => {
           <strong>Audio Experience</strong>
           <p>Turn on audio to enjoy the music while browsing the portfolio.</p>
         </div>
+        <span className="audioPromptProgress" aria-hidden="true">
+          <span className="audioPromptProgressBar" />
+        </span>
       </div>
     </section>
   );
