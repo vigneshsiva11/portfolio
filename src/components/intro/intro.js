@@ -1,8 +1,12 @@
 import "./intro.css";
 import { motion } from "framer-motion";
+import { FaMusic } from "react-icons/fa";
 import me1edit from "../../assets/me1edit.jpg";
+import { useMusicController } from "../../audio/useMusicController";
 
 const Intro = () => {
+  const { isPlaying, showPrompt, dismissPrompt, toggleMusic } = useMusicController();
+
   return (
     <section id="intro" className="introSection">
       <div className="introBackdrop" />
@@ -57,6 +61,17 @@ const Intro = () => {
         </p>
 
         <div className="introButtons">
+          <button
+            type="button"
+            onClick={toggleMusic}
+            className={`actionBtn actionBtnSocial musicToggleBtn ${isPlaying ? "isPlaying" : ""}`}
+            aria-label={isPlaying ? "Pause background music" : "Play background music"}
+            title={isPlaying ? "Pause music" : "Play music"}
+          >
+            <span className="musicIcon" aria-hidden="true">
+              <FaMusic className="musicGlyph" />
+            </span>
+          </button>
           <a
             href="/vignesh-resume.pdf"
             target="_blank"
@@ -81,6 +96,24 @@ const Intro = () => {
           >
             LN
           </a>
+        </div>
+      </div>
+
+      <div className={`audioPrompt ${showPrompt ? "isVisible" : ""}`} role="status" aria-live="polite">
+        <button
+          type="button"
+          className="audioPromptClose"
+          aria-label="Dismiss audio suggestion"
+          onClick={dismissPrompt}
+        >
+          x
+        </button>
+        <div className="audioPromptIcon" aria-hidden="true">
+          <FaMusic />
+        </div>
+        <div className="audioPromptText">
+          <strong>Audio Experience</strong>
+          <p>Turn on audio to enjoy the music while browsing the portfolio.</p>
         </div>
       </div>
     </section>

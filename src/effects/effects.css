@@ -1,0 +1,94 @@
+.fx-background-root {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -10;
+  overflow: hidden;
+}
+
+.fx-network-canvas,
+.fx-depth-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.fx-network-canvas {
+  opacity: 0.72;
+}
+
+.fx-depth-canvas {
+  opacity: 0.42;
+  filter: saturate(1.08);
+}
+
+.fx-cursor-enabled,
+.fx-cursor-enabled * {
+  cursor: none !important;
+}
+
+.cursorRing,
+.cursorDot {
+  display: none !important;
+}
+
+.fx-cursor-root {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2147483646;
+}
+
+.fx-cursor-dot,
+.fx-cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transition: opacity 160ms ease;
+}
+
+.fx-cursor-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(241, 236, 255, 0.95);
+  box-shadow: 0 0 12px rgba(185, 154, 255, 0.65);
+}
+
+.fx-cursor-ring {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(213, 198, 255, 0.8);
+  box-shadow: 0 0 20px rgba(149, 112, 255, 0.25), inset 0 0 12px rgba(232, 223, 255, 0.14);
+  transition: box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.fx-cursor-root.is-hover .fx-cursor-ring {
+  border-color: rgba(229, 220, 255, 0.95);
+  box-shadow: 0 0 28px rgba(163, 122, 255, 0.45), inset 0 0 16px rgba(239, 231, 255, 0.2);
+}
+
+.fx-cursor-root.is-hover .fx-cursor-dot {
+  box-shadow: 0 0 16px rgba(196, 167, 255, 0.8);
+}
+
+.fx-cursor-root.is-down .fx-cursor-dot {
+  opacity: 0.9;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .fx-background-root,
+  .fx-cursor-root {
+    display: none !important;
+  }
+
+  .fx-cursor-enabled,
+  .fx-cursor-enabled * {
+    cursor: auto !important;
+  }
+}

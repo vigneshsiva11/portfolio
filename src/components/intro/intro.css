@@ -168,6 +168,130 @@
   padding: 0;
 }
 
+.musicToggleBtn {
+  position: relative;
+  overflow: hidden;
+}
+
+.musicIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  transform-origin: center;
+}
+
+.musicGlyph {
+  width: 16px;
+  height: 16px;
+  display: block;
+  flex-shrink: 0;
+  transform-origin: center;
+}
+
+.musicToggleBtn.isPlaying .musicGlyph {
+  animation: musicSpin 6s linear infinite;
+}
+
+@keyframes musicSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.audioPrompt {
+  position: fixed;
+  right: 26px;
+  bottom: 28px;
+  width: min(340px, calc(100vw - 28px));
+  padding: 14px 14px 14px 12px;
+  border: 1px solid rgba(228, 222, 215, 0.16);
+  border-radius: 16px;
+  background: rgba(17, 20, 30, 0.92);
+  color: var(--text-main);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  z-index: 12000;
+  opacity: 0;
+  transform: translate3d(14px, 10px, 0);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 14px 32px rgba(5, 8, 16, 0.35);
+}
+
+.audioPrompt.isVisible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  pointer-events: auto;
+}
+
+.audioPromptIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(228, 222, 215, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.audioPromptIcon svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.audioPromptText strong {
+  display: block;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+}
+
+.audioPromptText p {
+  margin-top: 4px;
+  font-size: 0.82rem;
+  opacity: 0.84;
+  line-height: 1.4;
+}
+
+.audioPromptClose {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-main);
+  opacity: 0.72;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.audioPromptClose:hover,
+.audioPromptClose:focus-visible {
+  opacity: 1;
+  background: rgba(228, 222, 215, 0.12);
+  outline: none;
+}
+
+@media (max-width: 600px) {
+  .audioPrompt {
+    right: 10px;
+    bottom: 12px;
+    width: calc(100vw - 20px);
+  }
+}
+
 @keyframes homeBgDrift {
   0% {
     transform: translate3d(0, 0, 0) scale(1.01);
