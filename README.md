@@ -42,36 +42,6 @@ The UI is optimized for a polished portfolio experience with motion and subtle a
 - CSS (component-scoped + global styles)
 - Create React App toolchain (`react-scripts`)
 
-## Project Structure
-
-```text
-src/
-  App.js
-  index.js
-  index.css
-
-  audio/
-    musicController.js
-    useMusicController.js
-    sundari.mp3
-
-  effects/
-    initGlobalFX.js
-    backgroundFX.js
-    cursorFX.js
-    effects.css
-
-  components/
-    intro/
-    navbar/
-    skills/
-    tech stack/
-    works/
-    contact/
-    preloader/
-    footer/
-    certificates/
-```
 
 ## Getting Started
 

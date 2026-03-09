@@ -17,6 +17,7 @@ const Works = () => {
       description:
         "A modern, full-stack MERN chat application featuring real-time messaging, comprehensive AI capabilities powered by Google Gemini, and a beautiful glassmorphic UI. Experience intelligent conversations with built-in safety moderation, language translation, and voice-to-text features.",
       github: "https://github.com/vigneshsiva11/chat-app-mern",
+      liveLink: "https://chat-here-ws.vercel.app/",
     },
     {
       img: classless,
