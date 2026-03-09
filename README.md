@@ -59,6 +59,18 @@ npm start
 
 App runs at `http://localhost:3000`.
 
+### Email setup
+
+The contact form sends mail through EmailJS. Create a `.env.local` file with:
+
+```bash
+REACT_APP_EMAILJS_SERVICE_ID=your_service_id
+REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id
+REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+You can use `.env.example` as the reference.
+
 ### Production build
 
 ```bash

@@ -1,8 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import "./contact.css";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [status, setStatus] = useState({ type: "", message: "" });
+  const [isSending, setIsSending] = useState(false);
+
+  const handleChange = ({ target: { name, value } }) => {
+    setFormData((current) => ({
+      ...current,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setStatus({
+        type: "error",
+        message: "Email service is not configured yet.",
+      });
+      return;
+    }
+
+    setIsSending(true);
+    setStatus({ type: "", message: "" });
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        { publicKey }
+      );
+
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+      setStatus({
+        type: "success",
+        message: "Email sent successfully.",
+      });
+    } catch {
+      setStatus({
+        type: "error",
+        message: "Failed to send email. Please try again.",
+      });
+    } finally {
+      setIsSending(false);
+    }
+  };
+
   return (
     <section id="contact" className="contactSection">
       <div className="sectionShell contactShell">
@@ -17,14 +82,41 @@ const Contact = () => {
           <p className="constDesc">
             Please fill out the form below to discuss any work opportunities.
           </p>
-          <a
-            className="emailCta"
-            href="mailto:vigneshsiva11@gmail.com?subject=Lets%20work%20together!&body=Hello%2C%20I%20think%20we%20need%20you%20to%20work%20on%2Fcollaborate%20this%20particular%20product...%20Reach%20out%20as%20soon%20as%20you%20can."
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Send me an email
-          </a>
+          <form className="contactForm" onSubmit={handleSubmit}>
+            <input
+              className="contactInput"
+              type="text"
+              name="name"
+              placeholder="Your name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+            <input
+              className="contactInput"
+              type="email"
+              name="email"
+              placeholder="Your email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            <textarea
+              className="contactTextarea"
+              name="message"
+              placeholder="Your message"
+              value={formData.message}
+              onChange={handleChange}
+              rows="4"
+              required
+            />
+            <button className="emailCta" type="submit" disabled={isSending}>
+              {isSending ? "Sending..." : "Send email"}
+            </button>
+            {status.message && (
+              <p className={`contactStatus ${status.type}`}>{status.message}</p>
+            )}
+          </form>
         </motion.div>
 
         <motion.div
