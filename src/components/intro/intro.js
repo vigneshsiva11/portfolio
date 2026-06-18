@@ -5,7 +5,8 @@ import me1edit from "../../assets/me1edit.jpg";
 import { useMusicController } from "../../audio/useMusicController";
 
 const Intro = () => {
-  const { isPlaying, showPrompt, dismissPrompt, toggleMusic } = useMusicController();
+  const { isPlaying, showPrompt, dismissPrompt, toggleMusic } =
+    useMusicController();
 
   return (
     <section id="intro" className="introSection">
@@ -65,7 +66,9 @@ const Intro = () => {
             type="button"
             onClick={toggleMusic}
             className={`actionBtn actionBtnSocial musicToggleBtn ${isPlaying ? "isPlaying" : ""}`}
-            aria-label={isPlaying ? "Pause background music" : "Play background music"}
+            aria-label={
+              isPlaying ? "Pause background music" : "Play background music"
+            }
             title={isPlaying ? "Pause music" : "Play music"}
           >
             <span className="musicIcon" aria-hidden="true">
@@ -73,7 +76,7 @@ const Intro = () => {
             </span>
           </button>
           <a
-            href="/vignesh-resume.pdf"
+            href="/vignesh_sivakumar_resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="actionBtn actionBtnResume"
@@ -99,7 +102,11 @@ const Intro = () => {
         </div>
       </div>
 
-      <div className={`audioPrompt ${showPrompt ? "isVisible" : ""}`} role="status" aria-live="polite">
+      <div
+        className={`audioPrompt ${showPrompt ? "isVisible" : ""}`}
+        role="status"
+        aria-live="polite"
+      >
         <button
           type="button"
           className="audioPromptClose"
