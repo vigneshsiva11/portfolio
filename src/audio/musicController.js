@@ -1,7 +1,6 @@
-import portfolioMusicTrack from "./sundari.mp3";
-
 const TARGET_VOLUME = 0.25;
 const FADE_DURATION = 500;
+const portfolioMusicTrack = `${process.env.PUBLIC_URL}/sundari.mp3`;
 
 const STORAGE_ENABLED_KEY = "portfolio_music_enabled";
 const SESSION_PROMPT_DISMISSED_KEY = "portfolio_music_prompt_dismissed";
